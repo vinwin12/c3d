@@ -1,0 +1,88 @@
+<html>
+    <head>
+
+        <title>Prototype</title>
+
+        <!-- SEO and mobile format declarations -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Prototype">
+        <meta name="keywords" content="">
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="../img/webicon.png" />
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="../css/main.css" rel="stylesheet">
+
+        <!-- Comment -->
+    </head>
+    <body>
+        <div class="no-overflow">
+            <script src="../js/three.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+            <script>
+        			var scene = new THREE.Scene();
+              scene.background = new THREE.Color( 0xffffff );
+        			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+
+        			var renderer = new THREE.WebGLRenderer();
+        			renderer.setSize( window.innerWidth, window.innerHeight );
+        			document.body.appendChild( renderer.domElement );
+
+        			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+        			var material = new THREE.MeshBasicMaterial( { color: 0x426EFF } );
+        			var cube = new THREE.Mesh( geometry, material );
+
+              cube.material.color.setHex( 0x426EFF );
+
+        			scene.add( cube );
+
+        			camera.position.z = 5;
+
+              let settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": '/position',
+                "method": "GET",
+                "headers": {},
+                "data": "{}"
+              }
+
+              setInterval(function() {
+                $.ajax(settings).done(response => {
+                    console.log(response);
+                    if(cube.position.x <= 3 || cube.position.x === 0) {
+                      cube.position.x += response.position.x;
+                    } else if(cube.position.y <= 3 || cube.position.x === 1) {
+                      cube.position.y += response.position.y;
+                    } else {
+                      cube.position.x = 0;
+                      cube.position.y = 1;
+                    }
+
+                });
+              }, 100);
+
+        			var animate = function () {
+        				requestAnimationFrame( animate );
+
+        				renderer.render( scene, camera );
+        			};
+
+        			animate();
+        		</script>
+            <!--jQuery -->
+            <script src="../js/script.js"></script>
+
+            <!--Font Awesome -->
+            <script src="https://use.fontawesome.com/8c86fcede2.js"></script>
+
+            <!--JavaScript Bootstrap -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        </div>
+    </body>
+</html>

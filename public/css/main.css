@@ -1,0 +1,13 @@
+@font-face {
+    font-family: Andale Mono;
+    src: url(fonts/AndaleMono.ttf);
+    font-weight: 100;
+}
+
+a, a:hover {
+    text-decoration: none !important;
+}
+
+.no-overflow {
+    overflow-x: hidden !important;
+}
