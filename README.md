@@ -21,3 +21,13 @@ The third component, the server, is essentially the server which would receive a
 ## Project
 
 The repository contains different types of files that represent different parts of the project.
+
+As this project was a prototype into the possibilites and limitations of using Three.js for the required objectives, the web server was on the localhost itself, but was also ported into a Raspberry Pi that was emulated as a server for demonstration purposes. Given the sake of simplicity, this documentation will talk about the server being on the localhost. The layout and design of the server code were similar irrespective of it being on the localhost or the Raspberry Pi, with changes to the firewall(if needed), port forwarding, etc. Installing node.js, files and folders were installed for the project. Furthermore, ExpressJS was used for libraries for a web application framework on node.js. Please look at the documentation for ExpressJS and node.js. 
+
+### Server
+
+The most important file on the web server side is server.js. The first couple lines contain the intialization and setup for development. For prototyping puproses, the web server side included hard coded coordinates and respective times as the installation of the proxy server in the IRL was not feasible at the time. Essentially the code responds to get requests and for each get request the `index` variable, which starts at 0, would be incremented each time. Consequently, each time the get request is sent to the server, the `index` indexes the 3-4 arrays of a vehicle(time,x,y,z).
+
+### Client
+
+## Limitations and Future
