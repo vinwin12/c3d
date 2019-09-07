@@ -57,7 +57,7 @@ The code above is an example of how a GLTFLoader was used to load a car model in
 
 One important consideration to be made to the visualization is moving the car in the correction direction along with the points in the space. The `local_rotation` function is used to appropriately guide the vehicle along the points of motion with the correct direction of the vehicle. This function takes an old point(x,z) and a new point(x,z) to calculate the rotation the car/vehicle model must take to make the model appear to travel in the direction from the old to the new point. Please note that other gltf models were not tested with the `local_rotation` function and might result in not working smoothly for other gltf models, for example since drone models that were used in this project were symmetrical it was not needed.
 
-For tracking the previous points that the vehicles travelled through, small spheres of three colors were used to represent the points of atmost 3 vehicles. These colors of spheres are represented through functions called red, green, and blue. The spheres that mark the previous positions are instatiated whenever the functions are called with given points to place in the scene.  However, more can be added per number of vehicles.
+For tracking the previous points that the vehicles travelled through, small spheres of three colors were used to represent the points of atmost 3 vehicles. These colors of spheres are represented through functions called red, green, and blue. The spheres that mark the previous positions are instatiated whenever the functions are called with given points to place in the scene.  However, more can be added based number of vehicles.
 
 ```
 setInterval(function() {
