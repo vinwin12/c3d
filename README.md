@@ -70,7 +70,21 @@ setInterval(function() {
 ```
 
 There are two setInterval functions that are executed at every `t` milliseconds. One such function is used to receive the next points from the server to update the models' positions in the three.js scene. Another function is used to instantiate and place the point spheres(mentioned above) at the previous positions of the models' path. Note that there are different milliseconds used in the two functions, this will be explained in the next section below. 
-           
+
+```
+var animate = function () {
+                        requestAnimationFrame( animate );
+                        stats.begin();
+                        controls.update(); // only required if controls.enableDamping = true, or if controls.autoRotate=true
+        			        	renderer.render( scene, camera );
+                        ...
+                        ...
+                        stats.end();
+};
+
+animate();
+```          
+Lastly, as described in the three.js documentation, the animate function contains any logic that would run every frame or 60 times per second. This is where, found through performance reasons, the locations of the models are updated and even when the car vehicles execute the `local_rotation` function. Although the `local_function` per vehicle is called in `animate`, the points passed through the rotation function are with respect to the data captured in a snapshot of one of the setInterval functions. This design or choice is also due to performance reasons and derived through trial and error. 
 
 ## Limitations and Future
 
